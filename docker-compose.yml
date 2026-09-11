@@ -1,0 +1,20 @@
+services:
+  learnwith-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: learnwith-web:latest
+    container_name: learnwith-web
+    restart: unless-stopped
+    ports:
+      - "3174:3174"
+    environment:
+      - NODE_ENV=production
+      - PORT=3174
+      - HOSTNAME=0.0.0.0
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3174/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
