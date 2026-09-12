@@ -6,7 +6,7 @@ import Badge from "@/components/ui/Badge";
 
 export default function BentoGrid() {
   return (
-    <section className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#050e10] overflow-hidden text-white">
+    <section id="explore" className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#050e10] overflow-hidden text-white scroll-mt-12">
       {/* Cosmic Nebula Background Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-purple-900/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-indigo-900/15 rounded-full blur-[140px] pointer-events-none" />

@@ -266,7 +266,7 @@ export default function LearnWithHero() {
             </div>
 
             {/* 3-Column Minimalist Floating Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 items-stretch">
+            <div id="create" className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 items-stretch scroll-mt-24">
               
               {/* -------------------------------------------------------- */}
               {/* CARD 01 (Left ~4 Cols): Minimalist Community Metric */}
@@ -361,56 +361,74 @@ export default function LearnWithHero() {
                     <span className="text-[10px] text-zinc-400">Preset style latent selector</span>
                   </div>
 
-                  {/* Accessible 3x3 Stepped Touch Target Matrix (WCAG 2.5.8 compliant >= 24px) */}
-                  <div
-                    className="grid grid-cols-3 gap-2 p-1 select-none"
-                    aria-label="Style variation preview matrix"
-                  >
-                    {/* Row 1 */}
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
-                    <button
-                      onClick={() => setActiveVariation("Pure White")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-200 border border-white/40 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Pure White"
-                      aria-label="Select Pure White preset"
-                    />
+                    {/* Accessible 3x3 Stepped Touch Target Matrix (WCAG 2.5.8 compliant >= 24px) */}
+                    <div
+                      className="grid grid-cols-3 gap-2 p-1 select-none"
+                      aria-label="Style variation preview matrix"
+                    >
+                      {/* Row 1 */}
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
+                      <button
+                        onClick={() => setActiveVariation("Pure White")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-200 border border-white/40 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Pure White" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Pure White"
+                        aria-label="Select Pure White preset"
+                        aria-pressed={activeVariation === "Pure White"}
+                      />
 
-                    {/* Row 2 */}
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
-                    <button
-                      onClick={() => setActiveVariation("Mid Silver")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-500 border border-zinc-400/40 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Mid Silver"
-                      aria-label="Select Mid Silver preset"
-                    />
-                    <button
-                      onClick={() => setActiveVariation("Cool Slate")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-700 border border-zinc-600/50 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Cool Slate"
-                      aria-label="Select Cool Slate preset"
-                    />
+                      {/* Row 2 */}
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-transparent" />
+                      <button
+                        onClick={() => setActiveVariation("Mid Silver")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-500 border border-zinc-400/40 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Mid Silver" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Mid Silver"
+                        aria-label="Select Mid Silver preset"
+                        aria-pressed={activeVariation === "Mid Silver"}
+                      />
+                      <button
+                        onClick={() => setActiveVariation("Cool Slate")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-700 border border-zinc-600/50 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Cool Slate" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Cool Slate"
+                        aria-label="Select Cool Slate preset"
+                        aria-pressed={activeVariation === "Cool Slate"}
+                      />
 
-                    {/* Row 3 */}
-                    <button
-                      onClick={() => setActiveVariation("Deep Charcoal")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-900 border border-zinc-800 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Deep Charcoal"
-                      aria-label="Select Deep Charcoal preset"
-                    />
-                    <button
-                      onClick={() => setActiveVariation("Obsidian Void")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-800 border border-zinc-700 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Obsidian Void"
-                      aria-label="Select Obsidian Void preset"
-                    />
-                    <button
-                      onClick={() => setActiveVariation("Electric Frost")}
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-300 border border-zinc-200 hover:scale-110 transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black"
-                      title="Electric Frost"
-                      aria-label="Select Electric Frost preset"
-                    />
-                  </div>
+                      {/* Row 3 */}
+                      <button
+                        onClick={() => setActiveVariation("Deep Charcoal")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-900 border border-zinc-800 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Deep Charcoal" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Deep Charcoal"
+                        aria-label="Select Deep Charcoal preset"
+                        aria-pressed={activeVariation === "Deep Charcoal"}
+                      />
+                      <button
+                        onClick={() => setActiveVariation("Obsidian Void")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-800 border border-zinc-700 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Obsidian Void" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Obsidian Void"
+                        aria-label="Select Obsidian Void preset"
+                        aria-pressed={activeVariation === "Obsidian Void"}
+                      />
+                      <button
+                        onClick={() => setActiveVariation("Electric Frost")}
+                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-zinc-300 border border-zinc-200 hover:scale-110 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-black ${
+                          activeVariation === "Electric Frost" ? "ring-2 ring-white ring-offset-1 ring-offset-black scale-105" : ""
+                        }`}
+                        title="Electric Frost"
+                        aria-label="Select Electric Frost preset"
+                        aria-pressed={activeVariation === "Electric Frost"}
+                      />
+                    </div>
                 </div>
               </Card>
 
