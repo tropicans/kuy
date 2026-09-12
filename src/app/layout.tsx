@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LEARNWITH — Turn Ideas into Striking Images with AI",
+  title: "LEARNWITH — Platform Pelatihan Teknis Interaktif Mandiri",
   description:
-    "Next-generation AI image generation platform. Create striking visuals from simple prompts with instant variations and creative style controls.",
+    "Pelatihan interaktif terarah bebas cemas (zero-anxiety learning) untuk pemula dan ASN. Praktik mandiri, checklist otomatis, dan pelaporan kesiapan resmi.",
 };
 
 export default function RootLayout({
@@ -25,10 +26,12 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#050e10] text-[#f3f4f8]">{children}</body>
+      <body className="min-h-full flex flex-col transition-colors duration-200">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
