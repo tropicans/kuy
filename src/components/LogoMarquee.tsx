@@ -221,7 +221,7 @@ export default function LogoMarquee() {
   };
 
   return (
-    <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-[#050e10] overflow-hidden">
+    <section id="about" className="relative w-full py-16 sm:py-20 lg:py-24 bg-[#050e10] overflow-hidden scroll-mt-12">
       {/* Cosmic Nebula Ambient Glow Orbs */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-purple-900/15 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-indigo-900/15 rounded-full blur-[120px] pointer-events-none" />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollSequenceCanvas from "@/components/ScrollSequenceCanvas";
@@ -19,6 +19,14 @@ export default function LearnWithHero() {
   const [generationCount, setGenerationCount] = useState(104820);
   const [promptSeed, setPromptSeed] = useState(782104);
   const [currentFrame, setCurrentFrame] = useState<number>(1);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const navItems = [
     { label: "Create", href: "#create" },
@@ -70,12 +78,12 @@ export default function LearnWithHero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#050e10]/60 via-transparent to-[#050e10]/60 pointer-events-none" />
 
         {/* Outer Editorial Shell / Framed Hero Container */}
-        <div className="relative z-10 w-full max-w-[1540px] min-h-[920px] lg:min-h-[950px] rounded-[2rem] sm:rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden border border-white/[0.08] bg-black/40 backdrop-blur-[1.5px] flex flex-col justify-between">
+        <div className="relative z-10 w-full max-w-[1540px] h-[calc(100vh-1.25rem)] sm:h-[calc(100vh-2rem)] md:h-[calc(100vh-2.5rem)] lg:h-[calc(100vh-3.5rem)] max-h-[960px] min-h-[580px] rounded-[2rem] sm:rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden border border-white/[0.08] bg-black/40 backdrop-blur-[1.5px] flex flex-col justify-between">
           
           {/* ============================================================ */}
           {/* HEADER & MINIMALIST FLOATING NAVIGATION */}
           {/* ============================================================ */}
-          <header className="relative z-30 pt-6 px-6 sm:pt-8 sm:px-10 flex items-center justify-between w-full">
+          <header className="relative z-30 pt-3.5 px-5 sm:pt-5 sm:px-8 lg:pt-6 lg:px-10 flex items-center justify-between w-full">
             {/* Brand Logo (Top-Left) */}
             <Link
               href="/"
@@ -168,7 +176,13 @@ export default function LearnWithHero() {
 
           {/* Mobile Dropdown Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden relative z-40 mx-6 mt-3 bg-zinc-950/95 backdrop-blur-2xl rounded-3xl p-5 border border-white/10 animate-in fade-in slide-in-from-top-3 duration-200">
+            <>
+              <div
+                className="md:hidden fixed inset-0 z-30 bg-black/50 backdrop-blur-sm"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-hidden="true"
+              />
+              <div className="md:hidden relative z-40 mx-6 mt-3 bg-zinc-950/95 backdrop-blur-2xl rounded-3xl p-5 border border-white/10 animate-in fade-in slide-in-from-top-3 duration-200">
               <ul className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <li key={item.label}>
@@ -196,20 +210,21 @@ export default function LearnWithHero() {
                 </a>
               </div>
             </div>
+            </>
           )}
 
           {/* ============================================================ */}
           {/* MIDDLE-RIGHT NUMBERED FEATURE LIST & SCROLL STATUS FEEDBACK */}
           {/* ============================================================ */}
-          <div className="relative z-20 self-end px-6 sm:px-10 lg:px-12 my-auto pt-16 md:pt-6">
+          <div className="relative z-20 self-end px-5 sm:px-8 lg:px-10 my-auto pt-2 md:pt-1">
             
             {/* Real-time Scroll Sequence Status Feedback (Nielsen H1: Visibility of System Status) */}
-            <div className="flex items-center gap-2 font-mono text-[11px] font-light text-zinc-400 uppercase tracking-widest mb-3 justify-end select-none">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-light text-zinc-400 uppercase tracking-widest mb-2 justify-end select-none">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/80 animate-pulse" aria-hidden="true" />
               <span>SEQUENCE {String(currentFrame).padStart(2, "0")} / 50</span>
             </div>
 
-            <ul className="flex flex-col gap-2 sm:gap-2.5 text-right" aria-label="Key Capabilities">
+            <ul className="flex flex-col gap-1.5 sm:gap-2 text-right" aria-label="Key Capabilities">
               {features.map((feature, index) => (
                 <li
                   key={feature.id}
@@ -218,7 +233,7 @@ export default function LearnWithHero() {
                   className="group cursor-pointer transition-all duration-150"
                 >
                   <div
-                    className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full transition-all duration-150 ${
+                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full transition-all duration-150 ${
                       activeFeature === index
                         ? "bg-white/[0.06] text-white border border-white/10 translate-x-[-4px]"
                         : "text-zinc-400 hover:text-white"
@@ -239,12 +254,12 @@ export default function LearnWithHero() {
           {/* ============================================================ */}
           {/* BOTTOM SECTION: OVERSIZED BRAND TYPOGRAPHY & 3-CARD COMPOSITION */}
           {/* ============================================================ */}
-          <div className="relative z-20 px-5 pb-5 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10 w-full mt-auto">
+          <div className="relative z-20 px-4 pb-3 sm:px-6 sm:pb-4 lg:px-8 lg:pb-6 w-full mt-auto">
             
             {/* Typographic Hero Header: Minimalist Badge + Oversized LEARNWITH */}
-            <div className="mb-4 sm:mb-6 select-none">
+            <div className="mb-2 sm:mb-3 select-none">
               {/* Supporting Small Badge and Headline */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-1.5 sm:mb-2">
                 <Badge variant="mono" hasPulse pulseColor="bg-white/80">
                   AI IMAGE GENERATOR
                 </Badge>
@@ -257,16 +272,16 @@ export default function LearnWithHero() {
               </div>
 
               {/* Dominant Oversized Brand Typography with Reduced Boldness */}
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.6rem] xl:text-[8.5rem] font-light tracking-tight text-white leading-none flex items-baseline">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.8rem] xl:text-[7.5rem] font-light tracking-tight text-white leading-none flex items-baseline">
                 LEARNWITH
-                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extralight ml-2 -translate-y-6 sm:-translate-y-10 md:-translate-y-12 text-zinc-400 tracking-normal">
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extralight ml-2 -translate-y-4 sm:-translate-y-8 md:-translate-y-10 text-zinc-400 tracking-normal">
                   ™
                 </span>
               </h1>
             </div>
 
             {/* 3-Column Minimalist Floating Cards Grid */}
-            <div id="create" className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 items-stretch scroll-mt-24">
+            <div id="create" className="grid grid-cols-1 md:grid-cols-12 gap-3.5 lg:gap-4 items-stretch scroll-mt-24">
               
               {/* -------------------------------------------------------- */}
               {/* CARD 01 (Left ~4 Cols): Minimalist Community Metric */}
@@ -276,12 +291,12 @@ export default function LearnWithHero() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <div
-                        className="text-4xl sm:text-5xl font-light tracking-tight text-white"
+                        className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-white"
                         title={`${generationCount.toLocaleString()} total creations`}
                       >
                         {Math.floor(generationCount / 1000)}K+
                       </div>
-                      <div className="text-xs sm:text-sm text-zinc-400 font-light leading-snug max-w-[200px] pt-1.5">
+                      <div className="text-xs sm:text-sm text-zinc-400 font-light leading-snug max-w-[200px] pt-1">
                         Images created with LEARNWITH
                       </div>
                     </div>
@@ -298,7 +313,7 @@ export default function LearnWithHero() {
                 </div>
 
                 {/* Bottom Minimalist Status & Direct Action Link */}
-                <div className="mt-8 flex items-center justify-between pt-2">
+                <div className="mt-4 sm:mt-6 flex items-center justify-between pt-1">
                   <Badge variant="status" hasPulse pulseColor="bg-emerald-400/80">
                     Real-time creative output
                   </Badge>
@@ -329,7 +344,7 @@ export default function LearnWithHero() {
               {/* -------------------------------------------------------- */}
               {/* CARD 02 (Center ~5 Cols): Minimalist Generation Card */}
               {/* -------------------------------------------------------- */}
-              <Card className="md:col-span-12 lg:col-span-5 flex flex-col justify-between relative overflow-hidden">
+              <Card id="styles" className="md:col-span-12 lg:col-span-5 flex flex-col justify-between relative overflow-hidden scroll-mt-24">
                 <div>
                   {/* Header Row: Title and Metric with Light Font Weights */}
                   <div className="flex items-start justify-between">
@@ -349,13 +364,13 @@ export default function LearnWithHero() {
                   </div>
 
                   {/* Body Supporting Description */}
-                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-zinc-300 font-light leading-relaxed max-w-[360px]">
+                  <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-zinc-300 font-light leading-relaxed max-w-[360px]">
                     Explore ideas, generate variations, and turn simple prompts into compelling visuals.
                   </p>
                 </div>
 
                 {/* Bottom Visual: Minimalist Monochromatic Stepped Pattern */}
-                <div className="mt-6 flex items-end justify-between">
+                <div className="mt-3 sm:mt-4 lg:mt-5 flex items-end justify-between">
                   <div className="text-[11px] font-light text-zinc-400">
                     <span className="text-zinc-200 font-normal block">{activeVariation}</span>
                     <span className="text-[10px] text-zinc-400">Preset style latent selector</span>
@@ -482,7 +497,7 @@ export default function LearnWithHero() {
                 </div>
 
                 {/* Bottom Minimalist Control Bar */}
-                <div className="mt-3 bg-black/50 backdrop-blur-md rounded-2xl px-3.5 py-2 flex items-center justify-between text-white border border-white/[0.06]">
+                <div className="mt-2 sm:mt-2.5 bg-black/50 backdrop-blur-md rounded-2xl px-3.5 py-2 flex items-center justify-between text-white border border-white/[0.06]">
                   {/* Seed Refresh Button */}
                   <button
                     onClick={() => setPromptSeed(Math.floor(100000 + Math.random() * 900000))}

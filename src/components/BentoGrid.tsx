@@ -7,6 +7,7 @@ import Badge from "@/components/ui/Badge";
 export default function BentoGrid() {
   return (
     <section id="explore" className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#050e10] overflow-hidden text-white scroll-mt-12">
+      <div id="gallery" className="absolute top-0 left-0 -translate-y-12 pointer-events-none" />
       {/* Cosmic Nebula Background Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-purple-900/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-indigo-900/15 rounded-full blur-[140px] pointer-events-none" />
@@ -104,7 +105,7 @@ export default function BentoGrid() {
               <div className="md:col-span-5 relative w-full h-[200px] sm:h-[240px] md:h-[260px] rounded-2xl overflow-hidden border border-white/[0.08] shadow-inner bg-black/40 group-hover:scale-[1.02] transition-transform duration-500">
                 <Image
                   src="/images/bento-team.jpg"
-                  alt="DreamFrame creative directors and engineers collaborating in studio"
+                  alt="LEARNWITH creative directors and engineers collaborating in studio"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw, 420px"
@@ -327,10 +328,10 @@ export default function BentoGrid() {
                 </div>
                 <div>
                   <div className="text-sm font-bold tracking-wider uppercase text-white font-sans">
-                    DreamFrame
+                    LEARNWITH
                   </div>
                   <div className="text-[11px] font-mono text-purple-200/80">
-                    International Neural Center
+                    Studio Core & Neural Center
                   </div>
                 </div>
               </div>
